@@ -23,20 +23,19 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "org.valkyrienskies.eureka.fabric.EurekaModFabric"
+      "org.valkyrienskies.mechanica.fabric.EurekaModFabric"
     ],
     "client": [
-      "org.valkyrienskies.eureka.fabric.EurekaModFabric${'$'}Client"
+      "org.valkyrienskies.mechanica.fabric.EurekaModFabric${'$'}Client"
     ],
     "preLaunch": [
-      "org.valkyrienskies.eureka.fabric.ValkyrienPreLaunch"
+      "org.valkyrienskies.mechanica.fabric.ValkyrienPreLaunch"
     ],
     "modmenu": [
-      "org.valkyrienskies.eureka.fabric.EurekaModFabric${'$'}ModMenu"
+      "org.valkyrienskies.mechanica.fabric.EurekaModFabric${'$'}ModMenu"
     ]
   },
   "mixins": [
-    "vs_eureka-common.mixins.json",
     "vs_eureka.mixins.json"
   ],
   "depends": {
