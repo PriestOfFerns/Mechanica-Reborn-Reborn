@@ -23,6 +23,21 @@ configurations {
             developmentFabric.extendsFrom common
 }
 
+repositories {
+
+    // mavens for Fabric-exclusives
+    maven { url = "https://api.modrinth.com/maven" } // LazyDFU
+    maven { url = "https://maven.terraformersmc.com/releases/" } // Mod Menu
+    maven { url = "https://mvn.devos.one/snapshots/" }
+    // Create Fabric, Porting Lib, Forge Tags, Milk Lib, Registrate Fabric
+    maven { url = "https://cursemaven.com" } // Forge Config API Port
+    maven { url = "https://maven.cafeteria.dev/releases" } // Fake Player API
+    //maven { url = "https://maven.jamieswhiteshirt.com/libs-release" } // Reach Entity Attributes
+    maven { url = "https://jitpack.io/" } // Mixin Extras, Fabric ASM
+
+
+}
+
 dependencies {
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
     modApi "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
@@ -37,6 +52,13 @@ dependencies {
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
+
+
+    modImplementation("com.simibubi.create:create-fabric-${minecraft_version}:${create_fabric_version}") {
+        exclude group: 'com.github.AlphaMode', module: 'fakeconfigtoml'
+    }
+
+    modCompileOnly("curse.maven:cc-restitched-462672:3838648")
 }
 
 processResources {

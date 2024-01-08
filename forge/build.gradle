@@ -42,8 +42,25 @@ configurations {
             developmentForge.extendsFrom common
 }
 
+repositories {
+
+    // mavens for Forge-exclusives
+    maven { url = "https://maven.theillusivec4.top/" } // Curios
+    maven { // Create Forge and Registrate Forge
+        url = "https://maven.tterrag.com/"
+        content {
+            includeGroup("com.tterrag.registrate")
+            includeGroup("com.simibubi.create")
+        }
+    }
+
+    maven { url = "https://cursemaven.com" }
+
+}
+
 dependencies {
     forge "net.minecraftforge:forge:$forge_version"
+
     modApi("org.valkyrienskies:valkyrienskies-118-forge:$vs2_version") { transitive = false }
 
     implementation("org.valkyrienskies.core:api:$vs_core_version")
@@ -51,10 +68,18 @@ dependencies {
     implementation("org.valkyrienskies.core:util:$vs_core_version")
     implementation("org.valkyrienskies.core:impl:$vs_core_version")
 
+
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
 
     implementation "thedarkcolour:kotlinforforge:$forge_kotlin_version"
+
+
+    modImplementation("com.simibubi.create:create-${minecraft_version}:${create_forge_version}:slim") { transitive = false }
+    modImplementation("com.jozufozu.flywheel:flywheel-forge-${minecraft_version}:${flywheel_forge_version}")
+    modImplementation("com.tterrag.registrate:Registrate:${registrate_forge_version}")
+
+    modCompileOnly("curse.maven:cc-tweaked-282001:4630521")
 }
 
 processResources {
